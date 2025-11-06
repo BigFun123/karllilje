@@ -1,0 +1,1383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programming & Fintech Reference Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        nav {
+            background: #f7fafc;
+            padding: 20px;
+            border-bottom: 3px solid #e2e8f0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        nav a {
+            color: #4a5568;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            background: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(102, 126, 234, 0.4);
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        section {
+            margin-bottom: 50px;
+            scroll-margin-top: 80px;
+        }
+
+        h2 {
+            color: #2d3748;
+            font-size: 2em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+            display: inline-block;
+        }
+
+        h3 {
+            color: #4a5568;
+            font-size: 1.5em;
+            margin: 25px 0 15px 0;
+            padding-left: 15px;
+            border-left: 4px solid #764ba2;
+        }
+
+        .card {
+            background: #f7fafc;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .keyword-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .keyword-item {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+        }
+
+        .keyword-item strong {
+            color: #667eea;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        code {
+            background: #2d3748;
+            color: #68d391;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        pre {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 15px 0;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.3);
+        }
+
+        pre code {
+            background: transparent;
+            color: inherit;
+            padding: 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        tr:hover {
+            background: #f7fafc;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin: 3px;
+        }
+
+        .badge-primary { background: #667eea; color: white; }
+        .badge-success { background: #48bb78; color: white; }
+        .badge-warning { background: #ed8936; color: white; }
+        .badge-info { background: #4299e1; color: white; }
+        .badge-danger { background: #f56565; color: white; }
+
+        .list-styled {
+            padding-left: 20px;
+            margin: 15px 0;
+        }
+
+        .list-styled li {
+            margin: 8px 0;
+            padding-left: 10px;
+        }
+
+        footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            header h1 { font-size: 1.8em; }
+            .content { padding: 20px; }
+            nav ul { flex-direction: column; }
+            .keyword-grid { grid-template-columns: 1fr; }
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #fef5e7 0%, #fdebd0 100%);
+            border-left: 5px solid #f39c12;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .two-column { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📚 Programming & Fintech Reference Guide</h1>
+            <p>Comprehensive cheat sheet for developers and financial technology professionals</p>
+        </header>
+
+        <nav>
+            <ul>
+                <li><a href="#angular">Angular</a></li>
+                <li><a href="#csharp">C# / .NET</a></li>
+                <li><a href="#entity-framework">Entity Framework</a></li>
+                <li><a href="#cpp">C++</a></li>
+                <li><a href="#sql">SQL</a></li>
+                <li><a href="#fintech">Fintech</a></li>
+                <li><a href="#securities">Securities</a></li>
+                <li><a href="#security">Security</a></li>
+                <li><a href="#architecture">Architecture</a></li>
+            </ul>
+        </nav>
+
+        <div class="content">
+            <!-- ANGULAR SECTION -->
+            <section id="angular">
+                <h2>🅰️ Angular</h2>
+
+                <div class="card">
+                    <h3>Core Concepts</h3>
+                    <div class="keyword-grid">
+                        <div class="keyword-item">
+                            <strong>Anonymous/Arrow Function</strong>
+                            <code>() => expression</code>
+                        </div>
+                        <div class="keyword-item">
+                            <strong>Lambda Expressions</strong>
+                            <code>x => result</code>
+                        </div>
+                        <div class="keyword-item">
+                            <strong>Two-Way Binding</strong>
+                            <code>[(ngModel)]="property"</code>
+                        </div>
+                        <div class="keyword-item">
+                            <strong>Event Binding</strong>
+                            <code>(click)="handler()"</code>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Lifecycle Hooks</h3>
+                    <ul class="list-styled">
+                        <li><code>ngOnChanges()</code> - Responds to input changes</li>
+                        <li><code>ngOnInit()</code> - Initialize component</li>
+                        <li><code>ngDoCheck()</code> - Custom change detection</li>
+                        <li><code>ngAfterContentInit()</code> - After content projection</li>
+                        <li><code>ngAfterViewInit()</code> - After view initialization</li>
+                        <li><code>ngOnDestroy()</code> - Cleanup before destruction</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>HTTP & Observables</h3>
+                    <pre><code>// HTTP GET
+http.get&lt;ProductList&gt;(url)
+  .subscribe(result => doSomething(result));
+
+// HTTP POST
+http.post(url, data)
+  .subscribe(response => handleResponse(response));</code></pre>
+                    <div class="keyword-grid">
+                        <div class="keyword-item">
+                            <strong>HttpClient</strong>
+                            Simplified HTTP requests
+                        </div>
+                        <div class="keyword-item">
+                            <strong>HttpInterceptor</strong>
+                            Intercept and modify requests
+                        </div>
+                        <div class="keyword-item">
+                            <strong>Observables</strong>
+                            Reactive data streams
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Angular CLI Commands</h3>
+                    <table>
+                        <tr>
+                            <th>Command</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr><td><code>ng new &lt;project&gt;</code></td><td>Create new Angular project</td></tr>
+                        <tr><td><code>ng serve</code></td><td>Build and serve with live reload</td></tr>
+                        <tr><td><code>ng build --configuration production</code></td><td>Production build</td></tr>
+                        <tr><td><code>ng g c &lt;name&gt;</code></td><td>Generate component</td></tr>
+                        <tr><td><code>ng g s &lt;name&gt;</code></td><td>Generate service</td></tr>
+                        <tr><td><code>ng g m &lt;name&gt;</code></td><td>Generate module</td></tr>
+                        <tr><td><code>ng test</code></td><td>Run unit tests</td></tr>
+                        <tr><td><code>ng e2e</code></td><td>Run end-to-end tests</td></tr>
+                    </table>
+                </div>
+
+                <div class="card">
+                    <h3>Pipes</h3>
+                    <span class="badge badge-primary">uppercase</span>
+                    <span class="badge badge-primary">lowercase</span>
+                    <span class="badge badge-primary">date</span>
+                    <span class="badge badge-primary">percentage</span>
+                    <span class="badge badge-primary">currency</span>
+                    <p style="margin-top: 15px;">Implements <code>PipeTransform</code> interface</p>
+                </div>
+            </section>
+
+            <!-- C# / .NET SECTION -->
+            <section id="csharp">
+                <h2>💠 C# / .NET</h2>
+
+                <div class="card">
+                    <h3>ASP.NET Core Action Results</h3>
+                    <div class="keyword-grid">
+                        <div class="keyword-item">
+                            <strong>Ok(object)</strong>
+                            Returns HTTP 200 with data
+                        </div>
+                        <div class="keyword-item">
+                            <strong>BadRequest(object)</strong>
+                            Returns HTTP 400
+                        </div>
+                        <div class="keyword-item">
+                            <strong>NotFound(object)</strong>
+                            Returns HTTP 404
+                        </div>
+                        <div class="keyword-item">
+                            <strong>Created(uri, object)</strong>
+                            Returns HTTP 201
+                        </div>
+                        <div class="keyword-item">
+                            <strong>NoContent()</strong>
+                            Returns HTTP 204
+                        </div>
+                        <div class="keyword-item">
+                            <strong>Json(object)</strong>
+                            Returns JSON result
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Common Attributes</h3>
+                    <div class="two-column">
+                        <div>
+                            <h4>HTTP Methods</h4>
+                            <span class="badge badge-success">[HttpGet]</span>
+                            <span class="badge badge-info">[HttpPost]</span>
+                            <span class="badge badge-warning">[HttpPut]</span>
+                            <span class="badge badge-danger">[HttpDelete]</span>
+                        </div>
+                        <div>
+                            <h4>Routing & Binding</h4>
+                            <span class="badge badge-primary">[Route("path")]</span>
+                            <span class="badge badge-primary">[FromBody]</span>
+                            <span class="badge badge-primary">[FromQuery]</span>
+                            <span class="badge badge-primary">[FromRoute]</span>
+                        </div>
+                    </div>
+                    <div style="margin-top: 15px;">
+                        <h4>Authorization</h4>
+                        <span class="badge badge-warning">[Authorize]</span>
+                        <span class="badge badge-warning">[AllowAnonymous]</span>
+                    </div>
+                    <div style="margin-top: 15px;">
+                        <h4>Data Validation</h4>
+                        <span class="badge badge-info">[Required]</span>
+                        <span class="badge badge-info">[StringLength]</span>
+                        <span class="badge badge-info">[Range]</span>
+                        <span class="badge badge-info">[EmailAddress]</span>
+                        <span class="badge badge-info">[Display(Name="")]</span>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>LINQ Methods</h3>
+                    <table>
+                        <tr>
+                            <th>Method</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr><td><code>.Where(predicate)</code></td><td>Filter collection</td></tr>
+                        <tr><td><code>.Select(selector)</code></td><td>Project/transform elements</td></tr>
+                        <tr><td><code>.OrderBy(keySelector)</code></td><td>Sort ascending</td></tr>
+                        <tr><td><code>.OrderByDescending()</code></td><td>Sort descending</td></tr>
+                        <tr><td><code>.First() / FirstOrDefault()</code></td><td>Get first element</td></tr>
+                        <tr><td><code>.Single() / SingleOrDefault()</code></td><td>Get single element</td></tr>
+                        <tr><td><code>.Any() / All()</code></td><td>Check conditions</td></tr>
+                        <tr><td><code>.Count()</code></td><td>Count elements</td></tr>
+                        <tr><td><code>.GroupBy(keySelector)</code></td><td>Group elements</td></tr>
+                        <tr><td><code>.ToList() / ToArray()</code></td><td>Convert to collection</td></tr>
+                    </table>
+                </div>
+
+                <div class="card">
+                    <h3>String Manipulation</h3>
+                    <pre><code>string.IsNullOrEmpty(str)
+string.IsNullOrWhiteSpace(str)
+str.Trim() / TrimStart() / TrimEnd()
+str.Replace(old, new)
+str.Split(char[])
+str.Substring(start, length)
+str.Contains(substring)
+str.StartsWith() / EndsWith()
+str.ToLower() / ToUpper()</code></pre>
+                </div>
+
+                <div class="card">
+                    <h3>Async Programming</h3>
+                    <pre><code>await Task.Delay(milliseconds)
+await SomeAsyncMethod()
+Task.WhenAll(tasks)
+Task.Run(() => {...})
+.ContinueWith(continuation)</code></pre>
+                </div>
+
+                <div class="card">
+                    <h3>HttpClient Methods</h3>
+                    <pre><code>HttpClient.GetAsync(url)
+HttpClient.PostAsync(url, content)
+HttpClient.PutAsync(url, content)
+HttpClient.DeleteAsync(url)
+response.Content.ReadAsStringAsync()</code></pre>
+                </div>
+
+                <div class="card">
+                    <h3>Design Patterns</h3>
+                    <div class="keyword-grid">
+                        <div class="keyword-item">
+                            <strong>CQRS</strong>
+                            Command Query Responsibility Segregation
+                        </div>
+                        <div class="keyword-item">
+                            <strong>Mediator</strong>
+                            Intermediary pattern
+                        </div>
+                        <div class="keyword-item">
+                            <strong>Unit of Work</strong>
+                            Transaction management
+                        </div>
+                        <div class="keyword-item">
+                            <strong>Repository</strong>
+                            Database abstraction layer
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Utility Methods</h3>
+                    <pre><code>DateTime.Now / DateTime.UtcNow
+DateTime.AddDays() / AddMonths()
+Guid.NewGuid()
+Convert.ToInt32() / ToString() / ToBoolean()
+Enum.Parse() / Enum.TryParse()
+Path.Combine()
+File.ReadAllText() / WriteAllText() / Exists()</code></pre>
+                </div>
+            </section>
+
+            <!-- ENTITY FRAMEWORK SECTION -->
+            <section id="entity-framework">
+                <h2>🗄️ Entity Framework</h2>
+
+                <div class="card">
+                    <h3>Setup & Configuration</h3>
+                    <pre><code>dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+dotnet add package Microsoft.EntityFrameworkCore.Tools
+dotnet tool install --global dotnet-ef</code></pre>
+                </div>
+
+                <div class="card">
+                    <h3>DbContext Example</h3>
+                    <pre><code>public class AppDbContext : DbContext
+{
+    public AppDbContext(DbContextOptions&lt;AppDbContext&gt; options)
+        : base(options) { }
+
+    public DbSet&lt;Product&gt; Products => Set&lt;Product&gt;();
+}</code></pre>
+                </div>
+
+                <div class="card">
+                    <h3>Migrations</h3>
+                    <table>
+                        <tr>
+                            <th>Command</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr><td><code>dotnet ef migrations add InitialCreate</code></td><td>Create migration</td></tr>
+                        <tr><td><code>dotnet ef database update</code></td><td>Apply migrations</td></tr>
+                        <tr><td><code>dotnet ef migrations remove</code></td><td>Remove last migration</td></tr>
+                        <tr><td><code>dotnet ef migrations list</code></td><td>List all migrations</td></tr>
+                        <tr><td><code>Scaffold-DbContext "connection"</code></td><td>Generate from existing DB</td></tr>
+                    </table>
+                </div>
+
+                <div class="card">
+                    <h3>Querying Data</h3>
+                    <pre><code>context.Entities.ToList()
+context.Entities.Find(key)
+context.Entities.First(predicate)
+context.Entities.FirstOrDefault(predicate)
+context.Entities.Single(predicate)
+context.Entities.Where(predicate)
+context.Entities.OrderBy(keySelector)
+context.Entities.Select(selector)
+context.Entities.Include(navProperty)  // Eager loading
+context.Entities.AsNoTracking()        // Read-only query</code></pre>
+                </div>
+
+                <div class="card">
+                    <h3>Saving Data</h3>
+                    <pre><code>context.Add(entity)
+context.AddRange(entities)
+context.Update(entity)
+context.UpdateRange(entities)
+context.Remove(entity)
+context.RemoveRange(entities)
+context.SaveChanges()
+await context.SaveChangesAsync()</code></pre>
+                </div>
+
+                <div class="card">
+                    <h3>Transactions</h3>
+                    <pre><code>using var transaction = context.Database.BeginTransaction();
+try
+{
+    // operations
+    transaction.Commit();
+}
+catch
+{
+    transaction.Rollback();
+}</code></pre>
+                </div>
+
+                <div class="card">
+                    <h3>Raw SQL Execution</h3>
+                    <pre><code>// Query
+var results = context.Database.SqlQuery&lt;MyEntity&gt;(
+    "EXEC dbo.MyStoredProc @Param1, @Param2",
+    new SqlParameter("@Param1", value1),
+    new SqlParameter("@Param2", value2)
+).ToList();
+
+// Command
+context.Database.ExecuteSqlRaw(
+    "UPDATE Table SET Col = {0}", value
+);</code></pre>
+                </div>
+
+                <div class="card">
+                    <h3>Change Tracking</h3>
+                    <pre><code>context.Entry(entity).State = EntityState.Modified
+context.Entry(entity).Property(p => p.Name).IsModified = true
+context.ChangeTracker.Entries()
+context.ChangeTracker.Clear()</code></pre>
+                </div>
+            </section>
+
+            <!-- C++ SECTION -->
+            <section id="cpp">
+                <h2>⚙️ C++</h2>
+
+                <div class="card">
+                    <h3>Modern C++ Features</h3>
+                    <div class="keyword-grid">
+                        <div class="keyword-item">
+                            <strong>inline global</strong>
+                            <code>inline int g_nMyGlobal = 123;</code><br>
+                            Makes it properly global (not copy-pasted via #include)
+                        </div>
+                        <div class="keyword-item">
+                            <strong>weak_ptr</strong>
+                            Observer that doesn't change ref count<br>
+                            Resolves cyclic pointers
+                        </div>
+                        <div class="keyword-item">
+                            <strong>auto p = wp.lock()</strong>
+                            Creates shared_ptr temporarily from weak_ptr
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SQL SECTION -->
+            <section id="sql">
+                <h2>🗃️ SQL</h2>
+
+                <div class="card">
+                    <h3>String Functions</h3>
+                    <table>
+                        <tr>
+                            <th>Function</th>
+                            <th>Example</th>
+                            <th>Result</th>
+                        </tr>
+                        <tr><td>UPPER()</td><td><code>UPPER('hello')</code></td><td>HELLO</td></tr>
+                        <tr><td>LOWER()</td><td><code>LOWER('HELLO')</code></td><td>hello</td></tr>
+                        <tr><td>LEN()</td><td><code>LEN('hello')</code></td><td>5</td></tr>
+                        <tr><td>SUBSTRING()</td><td><code>SUBSTRING('abcdef', 2, 3)</code></td><td>bcd</td></tr>
+                        <tr><td>REPLACE()</td><td><code>REPLACE('2025-09-27','-','/')</code></td><td>2025/09/27</td></tr>
+                        <tr><td>CONCAT()</td><td><code>CONCAT('first', ' ', 'last')</code></td><td>first last</td></tr>
+                        <tr><td>TRIM()</td><td><code>TRIM('  text  ')</code></td><td>text</td></tr>
+                    </table>
+                </div>
+
+                <div class="card">
+                    <h3>Date/Time Functions</h3>
+                    <pre><code>GETDATE()                          -- Current datetime
+DATEADD(DAY, 7, GETDATE())         -- Add 7 days
+DATEDIFF(DAY, '2025-01-01', '2025-09-27')  -- Difference
+YEAR(GETDATE())                    -- Current year
+MONTH(GETDATE())                   -- Current month
+DAY(GETDATE())                     -- Current day
+EOMONTH(date)                      -- Last day of month
+FORMAT(date, 'format')             -- Format date</code></pre>
+                </div>
+
+                <div class="card">
+                    <h3>Math Functions</h3>
+                    <div class="keyword-grid">
+                        <div class="keyword-item">
+                            <strong>ABS(-123)</strong>
+                            Returns 123
+                        </div>
+                        <div class="keyword-item">
+                            <strong>ROUND(123.456, 2)</strong>
+                            Returns 123.46
+                        </div>
+                        <div class="keyword-item">
+                            <strong>CEILING(4.2)</strong>
+                            Returns 5
+                        </div>
+                        <div class="keyword-item">
+                            <strong>FLOOR(4.9)</strong>
+                            Returns 4
+                        </div>
+                        <div class="keyword-item">
+                            <strong>SQRT(25)</strong>
+                            Returns 5
+                        </div>
+                        <div class="keyword-item">
+                            <strong>POWER(2, 3)</strong>
+                            Returns 8
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Aggregate Functions</h3>
+                    <pre><code>COUNT(*)               -- Count rows
+SUM(Salary)            -- Total
+AVG(Salary)            -- Average
+MIN(Salary)            -- Minimum
+MAX(Salary)            -- Maximum
+GROUP BY column        -- Group for aggregation
+HAVING condition       -- Filter grouped results</code></pre>
+                </div>
+
+                <div class="card">
+                    <h3>Join Types</h3>
+                    <div class="keyword-grid">
+                        <div class="keyword-item">
+                            <strong>INNER JOIN</strong>
+                            Match rows in both tables
+                        </div>
+                        <div class="keyword-item">
+                            <strong>LEFT JOIN</strong>
+                            All rows from left table
+                        </div>
+                        <div class="keyword-item">
+                            <strong>RIGHT JOIN</strong>
+                            All rows from right table
+                        </div>
+                        <div class="keyword-item">
+                            <strong>FULL OUTER JOIN</strong>
+                            All rows from both tables
+                        </div>
+                        <div class="keyword-item">
+                            <strong>CROSS JOIN</strong>
+                            Cartesian product
+                        </div>
+                        <div class="keyword-item">
+                            <strong>SELF JOIN</strong>
+                            Join table with itself
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Window Functions</h3>
+                    <pre><code>ROW_NUMBER() OVER (ORDER BY column)
+RANK() OVER (ORDER BY column)          -- Ranking with ties
+DENSE_RANK() OVER (ORDER BY column)    -- No gaps
+NTILE(n) OVER (ORDER BY column)        -- Divide into buckets</code></pre>
+                </div>
+
+                <div class="card">
+                    <h3>Query Operators</h3>
+                    <div class="keyword-grid">
+                        <div class="keyword-item">
+                            <strong>WHERE</strong>
+                            Filter rows
+                        </div>
+                        <div class="keyword-item">
+                            <strong>DISTINCT</strong>
+                            Remove duplicates
+                        </div>
+                        <div class="keyword-item">
+                            <strong>TOP n</strong>
+                            First n rows
+                        </div>
+                        <div class="keyword-item">
+                            <strong>IN (values)</strong>
+                            Filter by list
+                        </div>
+                        <div class="keyword-item">
+                            <strong>BETWEEN</strong>
+                            Range filter
+                        </div>
+                        <div class="keyword-item">
+                            <strong>LIKE '%pattern%'</strong>
+                            Pattern matching
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Transactions & ACID</h3>
+                    <div class="highlight-box">
+                        <strong>ACID Properties:</strong>
+                        <ul class="list-styled">
+                            <li><strong>Atomicity</strong> - All or nothing</li>
+                            <li><strong>Consistency</strong> - Valid state transitions</li>
+                            <li><strong>Isolation</strong> - Concurrent execution</li>
+                            <li><strong>Durability</strong> - Permanent changes</li>
+                        </ul>
+                    </div>
+                    <pre><code>BEGIN TRANSACTION;
+-- operations
+COMMIT;
+-- or
+ROLLBACK;</code></pre>
+                </div>
+
+                <div class="card">
+                    <h3>Database Operations</h3>
+                    <ul class="list-styled">
+                        <li><strong>Indexes:</strong> Unique Index, Clustered Index, Non-Clustered Index</li>
+                        <li><strong>Constraints:</strong> NOT NULL, UNIQUE, PRIMARY KEY, FOREIGN KEY, CHECK</li>
+                        <li><strong>Triggers:</strong> BEFORE/AFTER INSERT/UPDATE/DELETE</li>
+                        <li><strong>Normalization:</strong> Reduce duplicates and dependencies</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>Advanced Query Example</h3>
+                    <pre><code>;WITH DailyAverages AS (
+    SELECT 
+        s.SymbolName,
+        s.Sector,
+        CAST(t.TimeStamp AS DATE) AS TradeDate,
+        COUNT(*) AS TradeCount,
+        AVG(t.[Open]) AS AvgOpen,
+        AVG(t.[Close]) AS AvgClose,
+        MAX(t.[High]) - MIN(t.[Low]) AS DailyRange,
+        SUM(t.Volume) AS TotalVolume
+    FROM dbo.TradingDatas t
+    INNER JOIN dbo.Symbols s ON t.SymbolId = s.SymbolId
+    WHERE t.Volume > 100000
+    GROUP BY s.SymbolName, s.Sector, CAST(t.TimeStamp AS DATE)
+)
+SELECT 
+    *,
+    RANK() OVER (PARTITION BY Sector ORDER BY TotalVolume DESC) AS VolumeRank
+FROM DailyAverages
+ORDER BY Sector, TotalVolume DESC;</code></pre>
+                </div>
+            </section>
+
+            <!-- FINTECH SECTION -->
+            <section id="fintech">
+                <h2>💰 Fintech Leadership & Strategy</h2>
+
+                <div class="card">
+                    <h3>🎯 Technology Vision and Alignment</h3>
+                    <ul class="list-styled">
+                        <li>Ensure technology strategy aligns with business growth objectives</li>
+                        <li>Define a three-year technology roadmap balancing innovation with stability</li>
+                        <li>Prioritize digital transformation initiatives for customer acquisition/retention</li>
+                        <li>Align delivery metrics with business outcomes (uptime, transaction speed, fraud reduction)</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>🧩 Architecture and Platform Strategy</h3>
+                    <ul class="list-styled">
+                        <li>Move towards modular, service-oriented architecture (microservices/DDD)</li>
+                        <li>Promote API-first integration for partnerships, open banking, ecosystem play</li>
+                        <li>Adopt event-driven systems for real-time payments, notifications, fraud detection</li>
+                        <li>Introduce data mesh or lakehouse architectures for scalable analytics</li>
+                        <li>Balance cloud-native adoption with cost and latency optimization</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>💳 Delivery Excellence and Agility</h3>
+                    <ul class="list-styled">
+                        <li>Mature DevSecOps pipelines - automated testing, deployment, compliance scanning</li>
+                        <li>Implement feature flags and canary deployments for safe delivery</li>
+                        <li>Use OKRs to link technical delivery to measurable financial KPIs</li>
+                        <li>Strengthen cross-functional squads (engineering, compliance, UX, product)</li>
+                        <li>Embrace continuous delivery with strong rollback and observability</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>🔒 Security, Compliance, and Risk</h3>
+                    <ul class="list-styled">
+                        <li>Embed security-by-design principles into every delivery stage</li>
+                        <li>Automate regulatory compliance (PCI DSS, GDPR, POPIA, SOC 2)</li>
+                        <li>Leverage real-time monitoring and anomaly detection for fraud protection</li>
+                        <li>Create unified risk dashboard across products, payments, data pipelines</li>
+                        <li>Invest in IAM and zero-trust architecture</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>📊 Data and AI Strategy</h3>
+                    <ul class="list-styled">
+                        <li>Drive data-driven decision-making through unified analytics and BI</li>
+                        <li>Develop AI-powered risk scoring, credit assessment, fraud detection models</li>
+                        <li>Adopt responsible AI frameworks for fairness and explainability</li>
+                        <li>Create data governance frameworks for quality, traceability, compliance</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>🤝 Partnerships and Ecosystem Enablement</h3>
+                    <ul class="list-styled">
+                        <li>Build API gateways for external developers, merchants, fintech partners</li>
+                        <li>Integrate with payment networks, digital banks, blockchain services</li>
+                        <li>Explore strategic alliances with cloud providers and AI vendors</li>
+                        <li>Support embedded finance capabilities for third-party platforms</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>🚀 Innovation and Emerging Technology</h3>
+                    <ul class="list-styled">
+                        <li>Experiment with blockchain-based settlement, tokenization, digital identity</li>
+                        <li>Explore AI copilots for compliance, fraud detection, customer support</li>
+                        <li>Pilot quantum-safe encryption and next-gen authentication</li>
+                        <li>Create innovation lab or sandbox for rapid prototyping</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>💼 Operational Resilience and Scalability</h3>
+                    <ul class="list-styled">
+                        <li>Strengthen business continuity and disaster recovery for financial-grade resilience</li>
+                        <li>Use observability stacks (metrics, logs, traces) for proactive issue detection</li>
+                        <li>Apply capacity planning and chaos engineering for peak transaction loads</li>
+                        <li>Develop multi-region failover and data replication strategies</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- SECURITIES SECTION -->
+            <section id="securities">
+                <h2>📈 Securities & Financial Markets</h2>
+
+                <div class="card">
+                    <h3>Market Participants</h3>
+                    <table>
+                        <tr>
+                            <th>Term</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr><td>Broker</td><td>Executes trades on behalf of clients</td></tr>
+                        <tr><td>Dealer</td><td>Trades on own account (principal)</td></tr>
+                        <tr><td>Market Maker</td><td>Provides liquidity by quoting buy and sell prices</td></tr>
+                        <tr><td>Custodian</td><td>Safeguards client assets and settles trades</td></tr>
+                        <tr><td>Registrar</td><td>Maintains shareholder records</td></tr>
+                        <tr><td>Nominee Account</td><td>Holds securities on behalf of beneficial owner</td></tr>
+                        <tr><td>Investment Manager</td><td>Manages portfolios on behalf of clients</td></tr>
+                        <tr><td>Corporate Finance Advisor</td><td>Advice on IPOs, mergers, capital raising</td></tr>
+                    </table>
+                </div>
+
+                <div class="card">
+                    <h3>Financial Instruments</h3>
+                    <table>
+                        <tr>
+                            <th>Instrument</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr><td>Equities (Shares)</td><td>Ownership interests in a company</td></tr>
+                        <tr><td>Gilts</td><td>UK government bonds</td></tr>
+                        <tr><td>Corporate Bonds</td><td>Debt securities issued by companies</td></tr>
+                        <tr><td>Preference Shares</td><td>Shares with fixed dividends, often no voting rights</td></tr>
+                        <tr><td>Unit Trust / OEIC</td><td>Collective investment schemes</td></tr>
+                        <tr><td>ETF</td><td>Exchange-Traded Fund - index-tracking fund</td></tr>
+                        <tr><td>Derivatives</td><td>Value derived from underlying assets</td></tr>
+                        <tr><td>CFD</td><td>Contract for Difference - price speculation</td></tr>
+                        <tr><td>Structured Product</td><td>Custom investment combining securities and derivatives</td></tr>
+                    </table>
+                </div>
+
+                <div class="card">
+                    <h3>Key Metrics</h3>
+                    <div class="keyword-grid">
+                        <div class="keyword-item">
+                            <strong>NAV (Net Asset Value)</strong>
+                            Value of fund assets minus liabilities
+                        </div>
+                        <div class="keyword-item">
+                            <strong>Yield</strong>
+                            Income return on an investment
+                        </div>
+                        <div class="keyword-item">
+                            <strong>Duration</strong>
+                            Bond price sensitivity to interest rates
+                        </div>
+                        <div class="keyword-item">
+                            <strong>Beta</strong>
+                            Stock sensitivity relative to market
+                        </div>
+                        <div class="keyword-item">
+                            <strong>VaR (Value at Risk)</strong>
+                            Statistical estimate of potential loss
+                        </div>
+                        <div class="keyword-item">
+                            <strong>Leverage</strong>
+                            Use of borrowed funds to amplify returns
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>UK-Specific Terms</h3>
+                    <table>
+                        <tr>
+                            <th>Term</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr><td>Bargain</td><td>Completed trade or transaction in securities</td></tr>
+                        <tr><td>Bargain Note (Contract Note)</td><td>Official client confirmation of trade</td></tr>
+                        <tr><td>CREST</td><td>UK electronic settlement system (Euroclear)</td></tr>
+                        <tr><td>AIM</td><td>Alternative Investment Market - LSE sub-market</td></tr>
+                        <tr><td>Stamp Duty / SDRT</td><td>Tax on transfer of UK shares</td></tr>
+                        <tr><td>RNS</td><td>Regulatory News Service - official disclosure channel</td></tr>
+                        <tr><td>Takeover Code</td><td>Rules governing M&A (Takeover Panel)</td></tr>
+                        <tr><td>Rights Issue</td><td>New shares offered to existing shareholders</td></tr>
+                        <tr><td>ISA</td><td>Individual Savings Account - tax-free savings</td></tr>
+                        <tr><td>SIPP</td><td>Self-Invested Personal Pension</td></tr>
+                        <tr><td>Nomad</td><td>Nominated Adviser (required for AIM companies)</td></tr>
+                    </table>
+                </div>
+
+                <div class="card">
+                    <h3>Trade Lifecycle</h3>
+                    <div class="highlight-box">
+                        <strong>Order → Bargain (Execution) → Reporting → Bargain Note → Settlement → Reconciliation</strong>
+                        <p style="margin-top: 10px;">Settlement typically T+2 (two days after trade execution)</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>System Resilience Considerations</h3>
+                    <ul class="list-styled">
+                        <li><strong>Async Processing:</strong> Decouple non-time-critical tasks like reporting</li>
+                        <li><strong>Caching:</strong> Reduce database load for frequently accessed data</li>
+                        <li><strong>Clusters:</strong> High availability and replication</li>
+                        <li><strong>Circuit Breakers:</strong> Fail-safe mechanisms and rate limiting</li>
+                        <li><strong>Multi-Region:</strong> Geographic redundancy</li>
+                        <li><strong>Load Testing:</strong> Chaos engineering and post-mortems</li>
+                        <li><strong>DB Locks:</strong> Careful transaction management</li>
+                        <li><strong>Monitoring:</strong> Real-time alerts and metrics</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>Financial Transaction Example (SQL)</h3>
+                    <pre><code>BEGIN TRANSACTION;
+
+-- 1. Debit from user's cash balance
+UPDATE accounts
+SET balance = balance - 500.00
+WHERE account_id = 101 AND balance >= 500.00;
+
+IF @@ROWCOUNT = 0
+BEGIN
+    ROLLBACK TRANSACTION;
+    RAISERROR ('Insufficient funds', 16, 1);
+    RETURN;
+END
+
+-- 2. Credit user's securities holdings
+INSERT INTO holdings (account_id, security_id, quantity, avg_price)
+VALUES (101, 'UKGILT2028', 50, 10.00);
+
+-- 3. Record the trade
+INSERT INTO trades (trade_id, account_id, security_id, amount, trade_type, trade_date)
+VALUES (NEXT VALUE FOR trade_seq, 101, 'UKGILT2028', 500.00, 'BUY', CURRENT_TIMESTAMP);
+
+COMMIT TRANSACTION;</code></pre>
+                </div>
+            </section>
+
+            <!-- SECURITY SECTION -->
+            <section id="security">
+                <h2>🔐 Security Best Practices</h2>
+
+                <div class="card">
+                    <h3>🔐 Secure Design and Architecture</h3>
+                    <ul class="list-styled">
+                        <li>Adopt <strong>Security by Design</strong> mindset - bake security into every stage</li>
+                        <li>Use threat modeling (STRIDE) to identify attack vectors early</li>
+                        <li>Segment architecture: separate public, application, and data layers</li>
+                        <li><strong>Principle of Least Privilege (PoLP):</strong> Minimum required access</li>
+                        <li><strong>Zero Trust Architecture:</strong> Continuously verify identity and device trust</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>🔑 Authentication and Authorization</h3>
+                    <ul class="list-styled">
+                        <li>Use OAuth 2.1, OpenID Connect for user sessions</li>
+                        <li>JWTs with short expiry for API calls</li>
+                        <li>Enforce multi-factor authentication (MFA) for privileged accounts</li>
+                        <li>Implement RBAC (Role-Based) or ABAC (Attribute-Based) access control</li>
+                        <li>Rotate keys, tokens, credentials regularly</li>
+                        <li>Use secrets manager (Azure Key Vault, AWS Secrets Manager, HashiCorp Vault)</li>
+                        <li>Never hardcode secrets in code or config</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>🧱 Data Protection</h3>
+                    <div class="two-column">
+                        <div>
+                            <h4>In Transit</h4>
+                            <ul class="list-styled">
+                                <li>TLS 1.2+ (ideally TLS 1.3)</li>
+                                <li>HTTPS everywhere</li>
+                                <li>Certificate pinning</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4>At Rest</h4>
+                            <ul class="list-styled">
+                                <li>AES-256 encryption</li>
+                                <li>Managed or customer-managed keys</li>
+                                <li>Field-level encryption for PII</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div style="margin-top: 15px;">
+                        <h4>Password Security</h4>
+                        <ul class="list-styled">
+                            <li>Hash with salt using <strong>bcrypt</strong>, <strong>Argon2</strong>, or <strong>PBKDF2</strong></li>
+                            <li>Never store plain-text passwords</li>
+                            <li>Data minimization - avoid storing unnecessary PII</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>🔍 Application Security</h3>
+                    <table>
+                        <tr>
+                            <th>Threat</th>
+                            <th>Prevention</th>
+                        </tr>
+                        <tr><td>SQL Injection</td><td>Use parameterized queries or ORM</td></tr>
+                        <tr><td>XSS (Cross-Site Scripting)</td><td>Escape output, use CSP headers</td></tr>
+                        <tr><td>CSRF</td><td>Implement anti-CSRF tokens</td></tr>
+                        <tr><td>SSRF</td><td>Whitelist outbound requests</td></tr>
+                        <tr><td>Command Injection</td><td>Validate and sanitize all inputs</td></tr>
+                    </table>
+                    <div style="margin-top: 15px;">
+                        <h4>Security Headers</h4>
+                        <span class="badge badge-warning">Content-Security-Policy</span>
+                        <span class="badge badge-warning">X-Frame-Options</span>
+                        <span class="badge badge-warning">X-Content-Type-Options</span>
+                        <span class="badge badge-warning">Strict-Transport-Security</span>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>🧠 Secure APIs</h3>
+                    <ul class="list-styled">
+                        <li>Use API gateways for authentication, throttling, centralized logging</li>
+                        <li>Implement rate limiting and IP whitelisting for critical endpoints</li>
+                        <li>Apply input/output schema validation (JSON Schema)</li>
+                        <li>Use HMAC or signed requests for inter-service communication</li>
+                        <li>Regularly audit API exposure - avoid leaking internal endpoints</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>🧩 Infrastructure Security</h3>
+                    <ul class="list-styled">
+                        <li>Keep servers, dependencies, containers patched and updated</li>
+                        <li>Run services with non-root privileges</li>
+                        <li>Enable network security groups (NSGs) / firewall rules</li>
+                        <li>Use private endpoints for databases and storage</li>
+                        <li>Deploy IDS/IPS for network monitoring</li>
+                        <li>Enable audit logging (Azure Monitor, AWS CloudTrail)</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>🧰 Continuous Security</h3>
+                    <ul class="list-styled">
+                        <li>Integrate SAST/DAST into CI/CD pipelines</li>
+                        <li>Use dependency scanning (Dependabot, Snyk)</li>
+                        <li>Enable real-time alerting for suspicious activity</li>
+                        <li>Implement SIEM systems for centralized visibility</li>
+                        <li>Conduct regular penetration testing and security audits</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>🕵️ Data Governance and Compliance</h3>
+                    <div class="keyword-grid">
+                        <div class="keyword-item">
+                            <strong>PCI DSS</strong>
+                            Payment Card Industry Data Security Standard
+                        </div>
+                        <div class="keyword-item">
+                            <strong>GDPR</strong>
+                            General Data Protection Regulation
+                        </div>
+                        <div class="keyword-item">
+                            <strong>POPIA</strong>
+                            Protection of Personal Information Act
+                        </div>
+                        <div class="keyword-item">
+                            <strong>SOC 2</strong>
+                            Service Organization Control 2
+                        </div>
+                    </div>
+                    <ul class="list-styled" style="margin-top: 15px;">
+                        <li>Maintain data classification policy (public, confidential, restricted)</li>
+                        <li>Define data retention and deletion policies</li>
+                        <li>Ensure audit trails for all critical operations</li>
+                        <li>Implement data masking for non-production environments</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>🧯 Incident Response</h3>
+                    <ul class="list-styled">
+                        <li>Establish security incident response plan with clear escalation paths</li>
+                        <li>Regularly test recovery procedures and backup integrity</li>
+                        <li>Maintain redundant environments across multiple regions</li>
+                        <li>Use immutable backups to protect against ransomware</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- ARCHITECTURE SECTION -->
+            <section id="architecture">
+                <h2>🏗️ Architecture & Design</h2>
+
+                <div class="card">
+                    <h3>Architectural Patterns</h3>
+                    <div class="keyword-grid">
+                        <div class="keyword-item">
+                            <strong>Zero Trust Architecture</strong>
+                            Verify continuously, never trust by default
+                        </div>
+                        <div class="keyword-item">
+                            <strong>Microservices</strong>
+                            Service-oriented, independently deployable
+                        </div>
+                        <div class="keyword-item">
+                            <strong>Event-Driven</strong>
+                            Asynchronous messaging and reactions
+                        </div>
+                        <div class="keyword-item">
+                            <strong>API-First</strong>
+                            Design APIs before implementation
+                        </div>
+                        <div class="keyword-item">
+                            <strong>Data Mesh</strong>
+                            Decentralized data ownership
+                        </div>
+                        <div class="keyword-item">
+                            <strong>Lakehouse</strong>
+                            Combined data lake and warehouse
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Communication Patterns</h3>
+                    <div class="keyword-grid">
+                        <div class="keyword-item">
+                            <strong>Polling</strong>
+                            Regular interval checks
+                        </div>
+                        <div class="keyword-item">
+                            <strong>WebSocket</strong>
+                            Real-time bidirectional communication
+                        </div>
+                        <div class="keyword-item">
+                            <strong>Queue</strong>
+                            Asynchronous message passing
+                        </div>
+                        <div class="keyword-item">
+                            <strong>MQTT</strong>
+                            Lightweight pub/sub protocol for IoT
+                        </div>
+                        <div class="keyword-item">
+                            <strong>NATS</strong>
+                            Cloud-native messaging system
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Scalability & Resilience</h3>
+                    <ul class="list-styled">
+                        <li><strong>Async Processing:</strong> Decouple non-time-critical operations</li>
+                        <li><strong>Caching:</strong> Reduce latency and database load</li>
+                        <li><strong>Clusters:</strong> High availability through replication</li>
+                        <li><strong>Standby Systems:</strong> Failover capabilities</li>
+                        <li><strong>Circuit Breakers:</strong> Prevent cascade failures</li>
+                        <li><strong>Fire Alarms:</strong> Real-time monitoring and alerts</li>
+                        <li><strong>Multi-Region:</strong> Geographic distribution</li>
+                        <li><strong>Load Testing:</strong> Validate performance under stress</li>
+                        <li><strong>Chaos Engineering:</strong> Test system resilience</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>Quality Practices</h3>
+                    <div class="keyword-grid">
+                        <div class="keyword-item">
+                            <strong>Data Validation</strong>
+                            Input sanitization and verification
+                        </div>
+                        <div class="keyword-item">
+                            <strong>Logging & Metrics</strong>
+                            Observability and debugging
+                        </div>
+                        <div class="keyword-item">
+                            <strong>Monitoring & Alerts</strong>
+                            Proactive issue detection
+                        </div>
+                        <div class="keyword-item">
+                            <strong>Post-Mortems</strong>
+                            Learn from incidents
+                        </div>
+                        <div class="keyword-item">
+                            <strong>Profiling</strong>
+                            Performance optimization
+                        </div>
+                        <div class="keyword-item">
+                            <strong>DB Locks</strong>
+                            Transaction isolation management
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Industry Examples</h3>
+                    <div class="highlight-box">
+                        <h4>Hospitality Tech</h4>
+                        <ul class="list-styled">
+                            <li><strong>OneRiver.co.za:</strong> Tools for hospitality and restaurants</li>
+                            <li><strong>Integration:</strong> WhatsApp for Business API</li>
+                            <li><strong>Cocktail Mixing Robot (Wunderbar):</strong> POS integration</li>
+                            <li><strong>LightSpeed Integration:</strong> HTTP endpoints, token authentication, JSON</li>
+                        </ul>
+                    </div>
+                    <div class="highlight-box" style="margin-top: 15px;">
+                        <h4>Robotics</h4>
+                        <ul class="list-styled">
+                            <li><strong>GoBotic.co.za:</strong> Delivery and Security Robots for Hospitality</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <footer>
+            <p>📚 Programming & Fintech Reference Guide</p>
+            <p style="margin-top: 10px; font-size: 0.9em; opacity: 0.8;">
+                Generated from comprehensive cheat sheets • Last updated: November 2025
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+
+        // Add search functionality
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.key === 'f') {
+                e.preventDefault();
+                const searchTerm = prompt('Search for:');
+                if (searchTerm) {
+                    window.find(searchTerm);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
