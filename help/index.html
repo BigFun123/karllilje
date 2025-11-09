@@ -256,8 +256,7 @@
 <body>
     <div class="container">
         <header>
-            <h1>📚 Programming & Fintech Reference Guide</h1>
-            <p>Comprehensive cheat sheet for developers and financial technology professionals</p>
+            <h1>📚 Programming & Fintech Reference Guide</h1>            
         </header>
 
         <nav>
@@ -265,12 +264,14 @@
                 <li><a href="#angular">Angular</a></li>
                 <li><a href="#csharp">C# / .NET</a></li>
                 <li><a href="#entity-framework">Entity Framework</a></li>
+                <li><a href="#package">Package Manager</a></li>
                 <li><a href="#cpp">C++</a></li>
                 <li><a href="#sql">SQL</a></li>
                 <li><a href="#fintech">Fintech</a></li>
                 <li><a href="#securities">Securities</a></li>
                 <li><a href="#security">Security</a></li>
                 <li><a href="#architecture">Architecture</a></li>
+                <li><a href="#git">GIT</a></li>
             </ul>
         </nav>
 
@@ -455,6 +456,78 @@ http.post(url, data)
                 </div>
 
                 <div class="card">
+                    <h3>LINQ Examples</h3>
+                    <pre><code>
+IEnumerable<TradingData> d2 = from item in data
+where item.Close > 10
+select item;
+
+IEnumerable<string> d2 = from item in data
+where item.Close > 10
+select $"{item.Close}";
+
+// Filter products by price
+
+    var expensiveProducts = products
+    .Where(p => p.Price > 100)
+    .ToList();
+
+// Transform to different type
+var productNames = products
+    .Select(p => p.Name)
+    .ToList();
+
+// Chain multiple operations
+var result = products
+    .Where(p => p.Price > 50 && p.InStock)
+    .OrderBy(p => p.Name)
+    .Select(p => new { p.Name, p.Price })
+    .ToList();
+
+// Group by category
+var groupedProducts = products
+    .GroupBy(p => p.Category)
+    .Select(g => new {
+        Category = g.Key,
+        Count = g.Count(),
+        AvgPrice = g.Average(p => p.Price)
+    });
+
+// Check conditions
+bool hasExpensiveItems = products.Any(p => p.Price > 1000);
+bool allInStock = products.All(p => p.InStock);
+
+// Join two collections
+var orderDetails = orders
+    .Join(customers,
+        order => order.CustomerId,
+        customer => customer.Id,
+        (order, customer) => new {
+            OrderId = order.Id,
+            CustomerName = customer.Name,
+            Total = order.Total
+        });
+
+// Aggregate operations
+var totalRevenue = orders.Sum(o => o.Total);
+var avgOrderValue = orders.Average(o => o.Total);
+var maxOrder = orders.Max(o => o.Total);
+
+// Skip and Take (pagination)
+var page = products
+    .OrderBy(p => p.Name)
+    .Skip(20)
+    .Take(10)
+    .ToList();
+
+// Distinct values
+var uniqueCategories = products
+    .Select(p => p.Category)
+    .Distinct()
+    .ToList();</code></pre>
+                </div>
+
+                <div class="card">
                     <h3>String Manipulation</h3>
                     <pre><code>string.IsNullOrEmpty(str)
 string.IsNullOrWhiteSpace(str)
@@ -617,6 +690,82 @@ context.Database.ExecuteSqlRaw(
 context.Entry(entity).Property(p => p.Name).IsModified = true
 context.ChangeTracker.Entries()
 context.ChangeTracker.Clear()</code></pre>
+                </div>
+            </section>
+
+            <section id="package">
+                <h2>📦 Package Manager (NuGet)</h2>
+
+                <div class="card">
+                    <h3>Overview</h3>
+                    <p>NuGet is the package manager for .NET. Use the modern dotnet CLI with PackageReference in .csproj, or nuget.exe for legacy scenarios and publishing. Support for private feeds via nuget.config.</p>
+                </div>
+
+                <div class="card">
+                    <h3>dotnet CLI - Common Commands</h3>
+                    <table>
+                        <tr><th>Command</th><th>Description / Example</th></tr>
+                        <tr><td><code>dotnet add package &lt;PackageId&gt;</code></td><td>Add package to project (resolves latest stable)</td></tr>
+                        <tr><td><code>dotnet add package &lt;Pkg&gt; --version 1.2.3</code></td><td>Add specific version</td></tr>
+                        <tr><td><code>dotnet restore</code></td><td>Restore packages for solution/project</td></tr>
+                        <tr><td><code>dotnet list package</code></td><td>List installed packages and available updates</td></tr>
+                        <tr><td><code>dotnet pack</code></td><td>Create a NuGet package from a project</td></tr>
+                        <tr><td><code>dotnet nuget push &lt;*.nupkg&gt; --api-key &lt;key&gt; --source &lt;url&gt;</code></td><td>Push package to feed (NuGet.org or private)</td></tr>
+                        <tr><td><code>dotnet tool install -g &lt;tool&gt;</code></td><td>Install global .NET tool</td></tr>
+                    </table>
+                </div>
+
+                <div class="card">
+                    <h3>nuget.exe - Useful Commands</h3>
+                    <pre><code>nuget.exe restore MySolution.sln
+                nuget.exe pack MyProject.nuspec -Version 1.0.0
+                nuget.exe push MyPackage.1.0.0.nupkg -Source "https://api.nuget.org/v3/index.json" -ApiKey &lt;key&gt;
+                nuget.exe locals all -clear  -- clear local cache</code></pre>
+                </div>
+
+                <div class="card">
+                    <h3>PackageReference (.csproj) Example</h3>
+                    <pre><code>&lt;ItemGroup&gt;
+                  &lt;PackageReference Include="Newtonsoft.Json" Version="13.0.1" /&gt;
+                  &lt;PackageReference Include="Polly" Version="7.2.3" /&gt;
+                &lt;/ItemGroup&gt;</code></pre>
+                </div>
+
+                <div class="card">
+                    <h3>nuget.config - Private Feed Example</h3>
+                    <pre><code>&lt;configuration&gt;
+                  &lt;packageSources&gt;
+                    &lt;add key="nuget.org" value="https://api.nuget.org/v3/index.json" /&gt;
+                    &lt;add key="MyPrivateFeed" value="https://pkgs.example.com/nuget" /&gt;
+                  &lt;/packageSources&gt;
+                  &lt;packageSourceCredentials&gt;
+                    &lt;MyPrivateFeed&gt;
+                      &lt;add key="Username" value="user" /&gt;
+                      &lt;add key="ClearTextPassword" value="secret" /&gt;
+                    &lt;/MyPrivateFeed&gt;
+                  &lt;/packageSourceCredentials&gt;
+                &lt;/configuration&gt;</code></pre>
+                </div>
+
+                <div class="card">
+                    <h3>Versioning & Pre-release</h3>
+                    <ul class="list-styled">
+                        <li>Semantic versions: <code>1.2.3</code>, use ranges in &lt;PackageReference&gt; if needed.</li>
+                        <li>Pre-release identifiers: <code>1.2.3-beta.1</code> — must allow pre-release when installing.</li>
+                        <li>Floating versions: <code>1.2.*</code> (use cautiously).</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>Tools & Best Practices</h3>
+                    <ul class="list-styled">
+                        <li>Prefer <strong>PackageReference</strong> (transitive deps, cleaner restore).</li>
+                        <li>Pin versions for production-critical dependencies; use updates via CI checks.</li>
+                        <li>Use private feeds for internal packages and CI artifacts.</li>
+                        <li>Scan packages for vulnerabilities (Dependabot, Snyk, GitHub Advanced Security).</li>
+                        <li>Cache restore in CI (use dotnet restore with --runtime or restore caches).</li>
+                        <li>Sign important packages and verify package integrity where required.</li>
+                    </ul>
                 </div>
             </section>
 
@@ -1348,7 +1497,96 @@ COMMIT TRANSACTION;</code></pre>
                     </div>
                 </div>
             </section>
+
+<!-- ARCHITECTURE SECTION -->
+            <section id="git">
+                <h2>Git</h2>
+                <div class="card">
+                    <h3>Common Git Commands</h3>
+                    <ul class="list-styled">
+                        <li><code>git init</code> - initialize a new repository</li>
+                        <li><code>git clone &lt;url&gt;</code> - clone remote repo</li>
+                        <li><code>git status</code> - show working tree status</li>
+                        <li><code>git add &lt;file&gt;</code> - stage changes</li>
+                        <li><code>git commit -m "msg"</code> - commit staged changes</li>
+                        <li><code>git push</code> - push commits to remote</li>
+                        <li><code>git pull</code> - fetch + merge from remote</li>
+                        <li><code>git fetch</code> - download objects and refs</li>
+                        <li><code>git log</code> - view commit history</li>
+                        <li><code>git diff</code> - show changes</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>Branching & Merging</h3>
+                    <ul class="list-styled">
+                        <li><code>git branch</code> - list branches</li>
+                        <li><code>git branch &lt;name&gt;</code> - create branch</li>
+                        <li><code>git checkout &lt;branch&gt;</code> - switch branch</li>
+                        <li><code>git switch -c &lt;name&gt;</code> - create & switch (modern)</li>
+                        <li><code>git merge &lt;branch&gt;</code> - merge branch into current</li>
+                        <li><code>git rebase &lt;base&gt;</code> - reapply commits onto base (cleaner history)</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>Remote Workflows</h3>
+                    <ul class="list-styled">
+                        <li><code>git remote -v</code> - list remotes</li>
+                        <li><code>git remote add origin &lt;url&gt;</code> - add remote</li>
+                        <li><code>git push -u origin &lt;branch&gt;</code> - push and set upstream</li>
+                        <li><code>git pull --rebase</code> - rebase local changes onto remote</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>Undoing & Recovering</h3>
+                    <ul class="list-styled">
+                        <li><code>git restore &lt;file&gt;</code> - discard working-tree changes (modern)</li>
+                        <li><code>git restore --staged &lt;file&gt;</code> - unstage file</li>
+                        <li><code>git reset --soft HEAD~1</code> - keep changes, move HEAD back</li>
+                        <li><code>git reset --hard HEAD~1</code> - remove last commit and working changes</li>
+                        <li><code>git revert &lt;commit&gt;</code> - create a new commit that undoes a commit</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>Stashing, Cherry-pick & Tags</h3>
+                    <ul class="list-styled">
+                        <li><code>git stash</code> - save uncommitted changes</li>
+                        <li><code>git stash pop</code> - apply and remove stash</li>
+                        <li><code>git cherry-pick &lt;commit&gt;</code> - apply single commit onto current branch</li>
+                        <li><code>git tag -a v1.0 -m "release"</code> - create annotated tag</li>
+                        <li><code>git push origin --tags</code> - push tags to remote</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>Inspecting & Debugging</h3>
+                    <ul class="list-styled">
+                        <li><code>git blame &lt;file&gt;</code> - show who changed each line</li>
+                        <li><code>git bisect start</code> - binary search for faulty commit</li>
+                        <li><code>git show &lt;commit&gt;</code> - show commit details</li>
+                        <li><code>git reflog</code> - view reference log to recover lost commits</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>Config & Best Practices</h3>
+                    <ul class="list-styled">
+                        <li><code>git config --global user.name "Name"</code> - set identity</li>
+                        <li><code>git config --global core.editor "code --wait"</code> - set default editor</li>
+                        <li>Use feature branches, small commits, descriptive messages, and PR-based reviews</li>
+                        <li>Prefer <code>git pull --rebase</code> or rebasing local changes to keep history linear</li>
+                    </ul>
+                </div>
+            </section>
+
+
+
         </div>
+
+        
 
         <footer>
             <p>📚 Programming & Fintech Reference Guide</p>
