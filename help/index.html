@@ -373,6 +373,26 @@ http.post(url, data)
                 <h2>💠 C# / .NET</h2>
 
                 <div class="card">
+                    <pre>
+                        <code>
+                            mkdir NostroVostro && cd NostroVostro
+                            dotnet new sln -n NostroVostro
+                            dotnet new webapi -n NostroVostro.Api
+                            dotnet new classlib -n NostroVostro.Core
+                            dotnet sln add NostroVostro.Api/NostroVostro.Api.csproj
+                            dotnet sln add NostroVostro.Core/NostroVostro.Core.csproj
+                            dotnet add NostroVostro.Api/NostroVostro.Api.csproj reference NostroVostro.Core/NostroVostro.Core.csproj
+
+                            cd NostroVostro.Api
+                            dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+                            dotnet add package Microsoft.EntityFrameworkCore.Design
+                            dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer
+                            dotnet add package Swashbuckle.AspNetCore
+                        </code>
+                    </pre>
+                </div>"
+
+                <div class="card">
                     <h3>ASP.NET Core Action Results</h3>
                     <div class="keyword-grid">
                         <div class="keyword-item">
