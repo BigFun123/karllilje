@@ -950,27 +950,6 @@ COMMIT TRANSACTION;</code></pre>
             </p>
         </footer>
     </div>
-
-    <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('nav a').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            });
-        });
-
-        // Add search functionality
-        document.addEventListener('keydown', function(e) {
-            if (e.ctrlKey && e.key === 'f') {
-                e.preventDefault();
-                const searchTerm = prompt('Search for:');
-                if (searchTerm) {
-                    window.find(searchTerm);
-                }
-            }
-        });
-    </script>
+    
 </body>
 </html>

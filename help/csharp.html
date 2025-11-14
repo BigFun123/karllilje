@@ -27,6 +27,14 @@
                         dotnet new clean-arch -n NimblePros.Sample
 
 
+                        dotnet new sln --name MyApiSolution
+                        dotnet new webapi --framework net8.0 --name MyApi
+                        dotnet new xunit --framework net8.0 --name MyApi.Tests
+                        dotnet sln MyApiSolution.sln add MyApi/MyApi.csproj
+                        dotnet sln MyApiSolution.sln add MyApi.Tests/MyApi.Tests.csproj
+                        dotnet add MyApi.Tests/MyApi.Tests.csproj reference MyApi/MyApi.csproj
+
+
                         dotnet new --list
                         dotnet new --search MyTemplate
                         dotnet new --install MyCustomTemplatePackage
