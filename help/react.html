@@ -1,4 +1,16 @@
-<pre>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programming & Fintech Reference Guide</title>
+    <link rel="stylesheet" href="./help.css">
+</head>
+
+<body>
+    <pre>
+
     <code>
         
 // useReducers in React for state management
@@ -33,7 +45,7 @@ const initialState: CounterState = { count: 0 };
 export const Counter: React.FC = () => {
     const [state, dispatch] = useReducer(counterReducer, initialState);
 
-    return (
+    return 
     <div>
         <h1>Counter: {state.count}</h1>
         <button onClick={() => dispatch({ type: 'increment' })}>Increment</button>
@@ -46,3 +58,6 @@ export const Counter: React.FC = () => {
 
     </code>
 </pre>
+</body>
+
+</html>

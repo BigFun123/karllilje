@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Programming & Fintech Reference Guide</title>
-    <link rel="stylesheet" href="help.css">
+    <link rel="stylesheet" href="./help.css">
 </head>
 
 <body>
@@ -15,60 +15,133 @@
             <h2>💠 C# / .NET</h2>
 
             <div class="card">
+                <h3>Clean Architecture</h3>
+                Domain Driven Design template for .NET projects
+                1. Model all business rules and logic in the Core project
+                2. Application project for use cases and application logic
+                3. Infrastructure project for data access, external services
+
+                <pre>
+                    <code>
+                        dotnet new install Ardalis.CleanArchitecture.Templte::9.0.0-preview2
+                        dotnet new clean-arch -n NimblePros.Sample
+
+
+                        dotnet new --list
+                        dotnet new --search MyTemplate
+                        dotnet new --install MyCustomTemplatePackage
+                        dotnet new --uninstall MyCustomTemplatePackage
+                        dotnet new --update-check
+                        dotnet new --update-apply
+                        dotnet new --name MyProject
+                        dotnet new --output ./MyProjectFolder
+                        dotnet new --framework net8.0
+                        dotnet new --language C#
+                        dotnet new --dry-run
+                        dotnet new --force
+                        dotnet new --no-restore
+                        dotnet new --interactive
+                        dotnet new --package MyNuGetPackage
+                        dotnet new --type project
+                        dotnet new --project MyProject.csproj
+                        dotnet new --in-place
+
+
+                        dotnet new console
+                        dotnet new console --framework net8.0
+
+                        dotnet new web
+                        dotnet new web --framework net8.0
+
+                        dotnet new webapi
+                        dotnet new webapi --framework net8.0
+
+                        dotnet new mvc
+                        dotnet new mvc --framework net8.0
+
+                        dotnet new razor
+                        dotnet new razor --framework net8.0
+
+                        dotnet new blazor
+                        dotnet new blazor --framework net8.0
+
+                        dotnet new classlib
+                        dotnet new classlib --framework net8.0
+
+                        dotnet new worker
+                        dotnet new worker --framework net8.0
+
+                        dotnet new mstest
+                        dotnet new mstest --framework net8.0
+
+                        dotnet new xunit
+                        dotnet new xunit --framework net8.0
+
+                        dotnet new nunit
+                        dotnet new nunit --framework net8.0
+
+                        dotnet new sln
+                        dotnet new gitignore
+                        dotnet new editorconfig
+                    </code>
+                </pre>
+            </div>
+
+            <div class="card">
                 <pre>
                     <code>
                         Console.WriteLine
-Console.ReadLine
-Math.Abs
-Math.Round
-Math.Ceiling
-Math.Floor
-Math.Sqrt
-Math.Pow
-string.Contains
-string.StartsWith
-string.EndsWith
-string.Split
-string.Join
-string.Replace
-string.ToLower
-string.ToUpper
-string.Trim
-string.Substring
-int.Parse
-double.Parse
-DateTime.Now
-DateTime.UtcNow
-DateTime.Parse
-Enumerable.Where
-Enumerable.Select
-Enumerable.First
-Enumerable.FirstOrDefault
-Enumerable.Single
-Enumerable.SingleOrDefault
-Enumerable.Any
-Enumerable.All
-Enumerable.Count
-Enumerable.Sum
-Enumerable.Average
-Enumerable.Max
-Enumerable.Min
-Enumerable.OrderBy
-Enumerable.OrderByDescending
-Enumerable.GroupBy
-Enumerable.ToList
-Enumerable.ToArray
-Task.Run
-Task.Delay
-File.ReadAllText
-File.WriteAllText
-File.ReadAllLines
-File.WriteAllLines
-File.Exists
-Directory.GetFiles
-Directory.GetDirectories
-JsonSerializer.Serialize
-JsonSerializer.Deserialize
+                        Console.ReadLine
+                        Math.Abs
+                        Math.Round
+                        Math.Ceiling
+                        Math.Floor
+                        Math.Sqrt
+                        Math.Pow
+                        string.Contains
+                        string.StartsWith
+                        string.EndsWith
+                        string.Split
+                        string.Join
+                        string.Replace
+                        string.ToLower
+                        string.ToUpper
+                        string.Trim
+                        string.Substring
+                        int.Parse
+                        double.Parse
+                        DateTime.Now
+                        DateTime.UtcNow
+                        DateTime.Parse
+                        Enumerable.Where
+                        Enumerable.Select
+                        Enumerable.First
+                        Enumerable.FirstOrDefault
+                        Enumerable.Single
+                        Enumerable.SingleOrDefault
+                        Enumerable.Any
+                        Enumerable.All
+                        Enumerable.Count
+                        Enumerable.Sum
+                        Enumerable.Average
+                        Enumerable.Max
+                        Enumerable.Min
+                        Enumerable.OrderBy
+                        Enumerable.OrderByDescending
+                        Enumerable.GroupBy
+                        Enumerable.ToList
+                        Enumerable.ToArray
+                        Task.Run
+                        Task.Delay
+                        File.ReadAllText
+                        File.WriteAllText
+                        File.ReadAllLines
+                        File.WriteAllLines
+                        File.Exists
+                        Directory.GetFiles
+                        Directory.GetDirectories
+                        JsonSerializer.Serialize
+                        JsonSerializer.Deserialize
                     </code>
                 </pre>
             </div>
