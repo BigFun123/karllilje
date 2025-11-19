@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programming & Fintech Reference Guide</title>
+    <link rel="stylesheet" href="./help.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Docker</h1>            
+        </header>
+        <main>
+            <pre>
+                <code>
+                    Common Docker Commands (With Descriptions)
+1. docker version
+
+Shows client and server version information.
+
+2. docker info
+
+Displays system-wide Docker configuration and stats.
+
+3. docker pull <image>
+
+Downloads an image from a registry, usually Docker Hub.
+
+4. docker images
+
+Lists all images stored locally.
+
+5. docker rmi <image>
+
+Removes a local image.
+
+6. docker run <image>
+
+Creates and starts a new container from an image.
+
+7. docker run -d <image>
+
+Runs a container in the background (detached mode).
+
+8. docker run -p host:container <image>
+
+Maps ports from container to host, useful for exposing apps.
+
+9. docker run --name <name> <image>
+
+Starts a container with a specific name.
+
+10. docker ps
+
+Shows running containers.
+
+11. docker ps -a
+
+Shows all containers, including stopped ones.
+
+12. docker stop <container>
+
+Stops a running container.
+
+13. docker start <container>
+
+Starts an existing stopped container.
+
+14. docker restart <container>
+
+Restarts a container.
+
+15. docker rm <container>
+
+Deletes a stopped container.
+
+16. docker logs <container>
+
+Shows a container’s logs.
+
+17. docker exec -it <container> sh or bash
+
+Opens an interactive shell inside a running container.
+
+18. docker build -t name:tag .
+
+Builds an image from a Dockerfile in the current directory.
+
+19. docker tag <image> <repo/name:tag>
+
+Adds a new tag to an image before pushing it.
+
+20. docker push <repo/name:tag>
+
+Uploads an image to a registry.
+
+21. docker network ls
+
+Lists networks.
+
+22. docker network create <name>
+
+Creates a new custom network.
+
+23. docker volume ls
+
+Lists volumes.
+
+24. docker volume create <name>
+
+Creates a named volume.
+
+25. docker compose up
+
+Starts all services defined in a docker-compose.yml file.
+
+26. docker compose up -d
+
+Starts the services in detached mode.
+
+27. docker compose down
+
+Stops and removes services, networks, and containers from the compose project.
+
+28. docker inspect <container or image>
+
+Shows detailed JSON metadata about a container or image.
+
+29. docker cp container:path
+ <host path>
+
+Copies files from/to a container.
+
+30. docker stats
+
+Shows live resource usage of running containers.
+                </code>
+            </pre>
+        </main>
+    </div>
+</body>
+</html>

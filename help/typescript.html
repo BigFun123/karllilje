@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programming & Fintech Reference Guide</title>
+    <link rel="stylesheet" href="./help.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Typescript</h1>
+        </header>
+    </div>
+    <pre>
+        <code>
+        TypeScript Cheat Sheet (With Mini Examples)
+
+1. Type Annotations
+let age: number = 42;
+let name: string = "John";
+let active: boolean = true;
+
+2. Interfaces
+interface User {
+  id: number;
+  name: string;
+}
+const u: User = { id: 1, name: "Alice" };
+
+3. Types (Aliases, Unions, Intersections)
+type ID = string | number;
+type WithTimestamp = { created: Date };
+
+4. Generics
+function wrap<T>(value: T): T[] {
+  return [value];
+}
+
+5. Enums
+enum Role { User, Admin }
+const r: Role = Role.Admin;
+
+6. Tuples
+const person: [string, number] = ["Alice", 30];
+
+7. Utility Types
+interface Car { model: string; year: number; }
+type PartialCar = Partial<Car>;
+
+8. Type Narrowing
+function log(v: string | number) {
+  if (typeof v === "string") console.log(v.toUpperCase());
+}
+
+9. Modules & Imports
+import { add } from "./math";
+
+10. Classes
+class Point {
+  constructor(public x: number, public y: number) {}
+}
+
+11. Async / Await
+async function load(): Promise<string> {
+  return "done";
+}
+
+12. Promises
+const p: Promise<number> = Promise.resolve(5);
+
+13. Function Overloads
+function toArray(x: number): number[];
+function toArray(x: string): string[];
+function toArray(x: any) { return [x]; }
+
+14. Literal Types
+let mode: "light" | "dark" = "light";
+
+15. Mapped Types
+type Flags<T> = { [K in keyof T]: boolean };
+
+16. Declaration Files (.d.ts)
+// math.d.ts
+declare function add(a: number, b: number): number;
+
+17. Type Assertions
+const el = document.getElementById("app") as HTMLDivElement;
+
+18. Non-null Assertion
+function logLength(x?: string) {
+  console.log(x!.length);
+}
+
+19. Unknown & Never
+let value: unknown = "hi";
+if (typeof value === "string") console.log(value.toUpperCase());
+
+20. Optional Chaining & Nullish Coalescing
+const user = { profile: null };
+console.log(user.profile?.name ?? "Anonymous");
+
+21. Discriminated Unions
+type Shape = { type: "circle", r: number } | { type: "square", s: number };
+function area(s: Shape) {
+  return s.type === "circle"
+    ? Math.PI * s.r * s.r
+    : s.s * s.s;
+}
+
+22. Index Signatures
+type Scores = { [user: string]: number };
+const s: Scores = { alice: 10 };
+
+23. keyof & typeof
+const car = { make: "Ford", year: 2020 };
+type CarKeys = keyof typeof car;  // "make" | "year"
+
+24. Readonly Types
+const nums: ReadonlyArray<number> = [1, 2, 3];
+
+25. JSX / TSX (React)
+type Props = { title: string };
+export function Header({ title }: Props) {
+  return < h1 >{title}< / h1 >;
+}
+</code>
+    </pre>
+</body>
+
+</html>
