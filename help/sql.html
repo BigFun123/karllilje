@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL</title>
+    <link rel="stylesheet" href="./help.css">
+</head>
+
+<body>
+
+
+    <!-- SQL SECTION -->
+    <section id="sql">
+        <h2>🗃️ SQL</h2>
+
+        <pre>
+<code>
+    --a sql query to get the connection string for a given database
+CREATE PROCEDURE GetConnectionString
+    @DatabaseName NVARCHAR(256),
+    @ConnectionString NVARCHAR(1000) OUTPUT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SET @ConnectionString = 
+        'Server=' + @@SERVERNAME + 
+        ';Database=' + @DatabaseName + 
+        ';Trusted_Connection=True;';
+END
+GO
+-- Example usage:
+DECLARE @ConnStr NVARCHAR(1000);
+EXEC GetConnectionString 'scratch', @ConnStr OUTPUT;
+PRINT @ConnStr;
+</code>
+        </pre>
+
+        <div class="card">
+            <h3>String Functions</h3>
+            <table>
+                <tr>
+                    <th>Function</th>
+                    <th>Example</th>
+                    <th>Result</th>
+                </tr>
+                <tr>
+                    <td>UPPER()</td>
+                    <td><code>UPPER('hello')</code></td>
+                    <td>HELLO</td>
+                </tr>
+                <tr>
+                    <td>LOWER()</td>
+                    <td><code>LOWER('HELLO')</code></td>
+                    <td>hello</td>
+                </tr>
+                <tr>
+                    <td>LEN()</td>
+                    <td><code>LEN('hello')</code></td>
+                    <td>5</td>
+                </tr>
+                <tr>
+                    <td>SUBSTRING()</td>
+                    <td><code>SUBSTRING('abcdef', 2, 3)</code></td>
+                    <td>bcd</td>
+                </tr>
+                <tr>
+                    <td>REPLACE()</td>
+                    <td><code>REPLACE('2025-09-27','-','/')</code></td>
+                    <td>2025/09/27</td>
+                </tr>
+                <tr>
+                    <td>CONCAT()</td>
+                    <td><code>CONCAT('first', ' ', 'last')</code></td>
+                    <td>first last</td>
+                </tr>
+                <tr>
+                    <td>TRIM()</td>
+                    <td><code>TRIM('  text  ')</code></td>
+                    <td>text</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="card">
+            <h3>Date/Time Functions</h3>
+            <pre><code>GETDATE()                          -- Current datetime
+DATEADD(DAY, 7, GETDATE())         -- Add 7 days
+DATEDIFF(DAY, '2025-01-01', '2025-09-27')  -- Difference
+YEAR(GETDATE())                    -- Current year
+MONTH(GETDATE())                   -- Current month
+DAY(GETDATE())                     -- Current day
+EOMONTH(date)                      -- Last day of month
+FORMAT(date, 'format')             -- Format date</code></pre>
+        </div>
+
+        <div class="card">
+            <h3>Math Functions</h3>
+            <div class="keyword-grid">
+                <div class="keyword-item">
+                    <strong>ABS(-123)</strong>
+                    Returns 123
+                </div>
+                <div class="keyword-item">
+                    <strong>ROUND(123.456, 2)</strong>
+                    Returns 123.46
+                </div>
+                <div class="keyword-item">
+                    <strong>CEILING(4.2)</strong>
+                    Returns 5
+                </div>
+                <div class="keyword-item">
+                    <strong>FLOOR(4.9)</strong>
+                    Returns 4
+                </div>
+                <div class="keyword-item">
+                    <strong>SQRT(25)</strong>
+                    Returns 5
+                </div>
+                <div class="keyword-item">
+                    <strong>POWER(2, 3)</strong>
+                    Returns 8
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>Aggregate Functions</h3>
+            <pre><code>COUNT(*)               -- Count rows
+SUM(Salary)            -- Total
+AVG(Salary)            -- Average
+MIN(Salary)            -- Minimum
+MAX(Salary)            -- Maximum
+GROUP BY column        -- Group for aggregation
+HAVING condition       -- Filter grouped results</code></pre>
+        </div>
+
+        <div class="card">
+            <h3>Join Types</h3>
+            <div class="keyword-grid">
+                <div class="keyword-item">
+                    <strong>INNER JOIN</strong>
+                    Match rows in both tables
+                </div>
+                <div class="keyword-item">
+                    <strong>LEFT JOIN</strong>
+                    All rows from left table
+                </div>
+                <div class="keyword-item">
+                    <strong>RIGHT JOIN</strong>
+                    All rows from right table
+                </div>
+                <div class="keyword-item">
+                    <strong>FULL OUTER JOIN</strong>
+                    All rows from both tables
+                </div>
+                <div class="keyword-item">
+                    <strong>CROSS JOIN</strong>
+                    Cartesian product
+                </div>
+                <div class="keyword-item">
+                    <strong>SELF JOIN</strong>
+                    Join table with itself
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>Window Functions</h3>
+            <pre><code>ROW_NUMBER() OVER (ORDER BY column)
+RANK() OVER (ORDER BY column)          -- Ranking with ties
+DENSE_RANK() OVER (ORDER BY column)    -- No gaps
+NTILE(n) OVER (ORDER BY column)        -- Divide into buckets</code></pre>
+        </div>
+
+        <div class="card">
+            <h3>Query Operators</h3>
+            <div class="keyword-grid">
+                <div class="keyword-item">
+                    <strong>WHERE</strong>
+                    Filter rows
+                </div>
+                <div class="keyword-item">
+                    <strong>DISTINCT</strong>
+                    Remove duplicates
+                </div>
+                <div class="keyword-item">
+                    <strong>TOP n</strong>
+                    First n rows
+                </div>
+                <div class="keyword-item">
+                    <strong>IN (values)</strong>
+                    Filter by list
+                </div>
+                <div class="keyword-item">
+                    <strong>BETWEEN</strong>
+                    Range filter
+                </div>
+                <div class="keyword-item">
+                    <strong>LIKE '%pattern%'</strong>
+                    Pattern matching
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>Transactions & ACID</h3>
+            <div class="highlight-box">
+                <strong>ACID Properties:</strong>
+                <ul class="list-styled">
+                    <li><strong>Atomicity</strong> - All or nothing</li>
+                    <li><strong>Consistency</strong> - Valid state transitions</li>
+                    <li><strong>Isolation</strong> - Concurrent execution</li>
+                    <li><strong>Durability</strong> - Permanent changes</li>
+                </ul>
+            </div>
+            <pre><code>BEGIN TRANSACTION;
+-- operations
+COMMIT;
+-- or
+ROLLBACK;</code></pre>
+        </div>
+
+        <div class="card">
+            <h3>Database Operations</h3>
+            <ul class="list-styled">
+                <li><strong>Indexes:</strong> Unique Index, Clustered Index, Non-Clustered Index</li>
+                <li><strong>Constraints:</strong> NOT NULL, UNIQUE, PRIMARY KEY, FOREIGN KEY, CHECK</li>
+                <li><strong>Triggers:</strong> BEFORE/AFTER INSERT/UPDATE/DELETE</li>
+                <li><strong>Normalization:</strong> Reduce duplicates and dependencies</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>Advanced Query Example</h3>
+            <pre><code>;WITH DailyAverages AS (
+    SELECT 
+        s.SymbolName,
+        s.Sector,
+        CAST(t.TimeStamp AS DATE) AS TradeDate,
+        COUNT(*) AS TradeCount,
+        AVG(t.[Open]) AS AvgOpen,
+        AVG(t.[Close]) AS AvgClose,
+        MAX(t.[High]) - MIN(t.[Low]) AS DailyRange,
+        SUM(t.Volume) AS TotalVolume
+    FROM dbo.TradingDatas t
+    INNER JOIN dbo.Symbols s ON t.SymbolId = s.SymbolId
+    WHERE t.Volume > 100000
+    GROUP BY s.SymbolName, s.Sector, CAST(t.TimeStamp AS DATE)
+)
+SELECT 
+    *,
+    RANK() OVER (PARTITION BY Sector ORDER BY TotalVolume DESC) AS VolumeRank
+FROM DailyAverages
+ORDER BY Sector, TotalVolume DESC;</code></pre>
+        </div>
+    </section>
+
+</body>
+
+</html>
