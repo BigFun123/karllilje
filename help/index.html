@@ -13,17 +13,18 @@
         </header>
 
         <nav>
-            <ul>
-                <li><a href="#angular">Angular</a></li>
+            <ul>                
                 <li><a href="./typescript.html">Typescript</a></li>
                 <li><a href="./react.html">React</a></li>                
+                <li><a href="./csharp.html">CSharp</a></li>
                 <li><a href="#cpp">C++</a></li>
                 <li><a href="#sql">SQL</a></li>
                 <li><a href="#fintech">Fintech</a></li>
                 <li><a href="#securities">Securities</a></li>
                 <li><a href="#security">Security</a></li>
                 <li><a href="#architecture">Architecture</a></li>
-                <li><a href="#git">GIT</a></li>
+                <li><a href="./git.html">GIT</a></li>
+                <li><a href="#angular">Angular</a></li>
                 <li><a href="./docker.html">Docker</a></li>
             </ul>
         </nav>
@@ -853,88 +854,7 @@ COMMIT TRANSACTION;</code></pre>
             </section>
 
 <!-- ARCHITECTURE SECTION -->
-            <section id="git">
-                <h2>Git</h2>
-                <div class="card">
-                    <h3>Common Git Commands</h3>
-                    <ul class="list-styled">
-                        <li><code>git init</code> - initialize a new repository</li>
-                        <li><code>git clone &lt;url&gt;</code> - clone remote repo</li>
-                        <li><code>git status</code> - show working tree status</li>
-                        <li><code>git add &lt;file&gt;</code> - stage changes</li>
-                        <li><code>git commit -m "msg"</code> - commit staged changes</li>
-                        <li><code>git push</code> - push commits to remote</li>
-                        <li><code>git pull</code> - fetch + merge from remote</li>
-                        <li><code>git fetch</code> - download objects and refs</li>
-                        <li><code>git log</code> - view commit history</li>
-                        <li><code>git diff</code> - show changes</li>
-                    </ul>
-                </div>
-
-                <div class="card">
-                    <h3>Branching & Merging</h3>
-                    <ul class="list-styled">
-                        <li><code>git branch</code> - list branches</li>
-                        <li><code>git branch &lt;name&gt;</code> - create branch</li>
-                        <li><code>git checkout &lt;branch&gt;</code> - switch branch</li>
-                        <li><code>git switch -c &lt;name&gt;</code> - create & switch (modern)</li>
-                        <li><code>git merge &lt;branch&gt;</code> - merge branch into current</li>
-                        <li><code>git rebase &lt;base&gt;</code> - reapply commits onto base (cleaner history)</li>
-                    </ul>
-                </div>
-
-                <div class="card">
-                    <h3>Remote Workflows</h3>
-                    <ul class="list-styled">
-                        <li><code>git remote -v</code> - list remotes</li>
-                        <li><code>git remote add origin &lt;url&gt;</code> - add remote</li>
-                        <li><code>git push -u origin &lt;branch&gt;</code> - push and set upstream</li>
-                        <li><code>git pull --rebase</code> - rebase local changes onto remote</li>
-                    </ul>
-                </div>
-
-                <div class="card">
-                    <h3>Undoing & Recovering</h3>
-                    <ul class="list-styled">
-                        <li><code>git restore &lt;file&gt;</code> - discard working-tree changes (modern)</li>
-                        <li><code>git restore --staged &lt;file&gt;</code> - unstage file</li>
-                        <li><code>git reset --soft HEAD~1</code> - keep changes, move HEAD back</li>
-                        <li><code>git reset --hard HEAD~1</code> - remove last commit and working changes</li>
-                        <li><code>git revert &lt;commit&gt;</code> - create a new commit that undoes a commit</li>
-                    </ul>
-                </div>
-
-                <div class="card">
-                    <h3>Stashing, Cherry-pick & Tags</h3>
-                    <ul class="list-styled">
-                        <li><code>git stash</code> - save uncommitted changes</li>
-                        <li><code>git stash pop</code> - apply and remove stash</li>
-                        <li><code>git cherry-pick &lt;commit&gt;</code> - apply single commit onto current branch</li>
-                        <li><code>git tag -a v1.0 -m "release"</code> - create annotated tag</li>
-                        <li><code>git push origin --tags</code> - push tags to remote</li>
-                    </ul>
-                </div>
-
-                <div class="card">
-                    <h3>Inspecting & Debugging</h3>
-                    <ul class="list-styled">
-                        <li><code>git blame &lt;file&gt;</code> - show who changed each line</li>
-                        <li><code>git bisect start</code> - binary search for faulty commit</li>
-                        <li><code>git show &lt;commit&gt;</code> - show commit details</li>
-                        <li><code>git reflog</code> - view reference log to recover lost commits</li>
-                    </ul>
-                </div>
-
-                <div class="card">
-                    <h3>Config & Best Practices</h3>
-                    <ul class="list-styled">
-                        <li><code>git config --global user.name "Name"</code> - set identity</li>
-                        <li><code>git config --global core.editor "code --wait"</code> - set default editor</li>
-                        <li>Use feature branches, small commits, descriptive messages, and PR-based reviews</li>
-                        <li>Prefer <code>git pull --rebase</code> or rebasing local changes to keep history linear</li>
-                    </ul>
-                </div>
-            </section>
+           
 
 
 

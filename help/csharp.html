@@ -597,22 +597,23 @@ context.ChangeTracker.Clear()</code></pre>
             <div class="card">
                 <h3>nuget.exe - Useful Commands</h3>
                 <pre><code>nuget.exe restore MySolution.sln
-                nuget.exe pack MyProject.nuspec -Version 1.0.0
-                nuget.exe push MyPackage.1.0.0.nupkg -Source "https://api.nuget.org/v3/index.json" -ApiKey &lt;key&gt;
-                nuget.exe locals all -clear  -- clear local cache</code></pre>
+nuget.exe pack MyProject.nuspec -Version 1.0.0
+nuget.exe push MyPackage.1.0.0.nupkg -Source "https://api.nuget.org/v3/index.json" -ApiKey &lt;key&gt;
+nuget.exe locals all -clear  -- clear local cache</code></pre>
             </div>
 
             <div class="card">
                 <h3>PackageReference (.csproj) Example</h3>
                 <pre><code>&lt;ItemGroup&gt;
-                  &lt;PackageReference Include="Newtonsoft.Json" Version="13.0.1" /&gt;
-                  &lt;PackageReference Include="Polly" Version="7.2.3" /&gt;
-                &lt;/ItemGroup&gt;</code></pre>
+&lt;PackageReference Include="Newtonsoft.Json" Version="13.0.1" /&gt;
+&lt;PackageReference Include="Polly" Version="7.2.3" /&gt;
+&lt;/ItemGroup&gt;</code></pre>
             </div>
 
             <div class="card">
                 <h3>nuget.config - Private Feed Example</h3>
-                <pre><code>&lt;configuration&gt;
+                <pre>
+                    <code>&lt;configuration&gt;
                   &lt;packageSources&gt;
                     &lt;add key="nuget.org" value="https://api.nuget.org/v3/index.json" /&gt;
                     &lt;add key="MyPrivateFeed" value="https://pkgs.example.com/nuget" /&gt;
